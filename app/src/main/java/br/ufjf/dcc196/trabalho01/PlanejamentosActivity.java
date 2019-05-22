@@ -68,13 +68,10 @@
 
             Cursor cursorPlanrjamento = db.query(PlanejamentosContract.Planejamentos.TABLE_NAME, camposPlanejamento, null, null, null, null, null);
 
-
-
-            //rv = findViewById(R.id.rvTable);
-            //rv.setAdapter(pAdapter);
-            //rv.setLayoutManager(new LinearLayoutManager(PlanejamentosActivity.this));
-
-            //pAdapter = new PlanejamentosAdapter(planejamentos);
+            final PlanejamentoAdapter adapter = new PlanejamentoAdapter(cursorPlanrjamento);
+            RecyclerView rv = findViewById(R.id.rvPlanejamentos);
+            rv.setAdapter(adapter);
+            rv.setLayoutManager(new LinearLayoutManager(this));
 
             /*
             pAdapter.setListener(new PlanejamentosAdapter.OnPlanejamentoClickListener() {
@@ -91,7 +88,6 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(PlanejamentosActivity.this, NovoPlanejamentoActivity.class);
-                    //intent.putExtra("palnejamentos", planejamentos);
                     startActivityForResult(intent, PlanejamentosActivity.REQUEST_PLANEJAMENTO);
                 }
             });
