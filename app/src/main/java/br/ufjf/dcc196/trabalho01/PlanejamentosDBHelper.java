@@ -14,11 +14,12 @@ public class PlanejamentosDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(PlanejamentosContract);
+        db.execSQL(PlanejamentosContract.Planejamentos.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(PlanejamentosContract.Planejamentos.DROP_TABLE);
+        onCreate(db);
     }
 }
