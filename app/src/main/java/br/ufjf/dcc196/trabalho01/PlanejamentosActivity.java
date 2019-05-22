@@ -1,6 +1,11 @@
     package br.ufjf.dcc196.trabalho01;
 
+    import android.content.ContentValues;
     import android.content.Intent;
+    import android.database.Cursor;
+    import android.database.sqlite.SQLiteDatabase;
+    import android.database.sqlite.SQLiteOpenHelper;
+    import android.media.Image;
     import android.os.Bundle;
     import android.os.Parcelable;
     import android.support.annotation.Nullable;
@@ -9,6 +14,7 @@
     import android.support.v7.widget.RecyclerView;
     import android.view.View;
     import android.widget.Button;
+    import android.widget.Toast;
 
     import java.io.Serializable;
     import java.util.ArrayList;
@@ -31,10 +37,38 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.planejamentos_activity);
 
-
             Button btnPlanejamento = findViewById(R.id.btnPlanejamento);
             Button btnMateria = findViewById(R.id.btnMateria);
-            Button btnAtt = findViewById(R.id.btnAtualizar);
+
+            PlanejamentosDBHelper helper = new PlanejamentosDBHelper(getApplicationContext());
+            SQLiteDatabase db = helper.getWritableDatabase();
+            ContentValues values =  new ContentValues();
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_ANO, "2016");
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_SEMESTRE, "1");
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_HORAS, "20");
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_LINGUAS, "5");
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_HUMANAS, "5");
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_EXATAS, "5");
+            values.put(PlanejamentosContract.Planejamentos.COLLUMN_SAUDE, "5");
+
+            long id = db.insert(PlanejamentosContract.Planejamentos.TABLE_NAME, null, values);
+
+            Toast.makeText(this, "Novo registro criado com id: " + id, Toast.LENGTH_LONG).show();
+
+            String[] camposPlanejamento = {
+                    PlanejamentosContract.Planejamentos._ID,
+                    PlanejamentosContract.Planejamentos.COLLUMN_ANO,
+                    PlanejamentosContract.Planejamentos.COLLUMN_SEMESTRE,
+                    PlanejamentosContract.Planejamentos.COLLUMN_HORAS,
+                    PlanejamentosContract.Planejamentos.COLLUMN_LINGUAS,
+                    PlanejamentosContract.Planejamentos.COLLUMN_HUMANAS,
+                    PlanejamentosContract.Planejamentos.COLLUMN_EXATAS,
+                    PlanejamentosContract.Planejamentos.COLLUMN_SAUDE,
+            };
+
+            Cursor cursorPlanrjamento = db.query(PlanejamentosContract.Planejamentos.TABLE_NAME, camposPlanejamento, null, null, null, null, null);
+
+
 
             //rv = findViewById(R.id.rvTable);
             //rv.setAdapter(pAdapter);
