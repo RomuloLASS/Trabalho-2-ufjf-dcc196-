@@ -23,6 +23,7 @@
         public static final int REQUEST_PLANEJAMENTO = 1;
         public static final int REQUEST_MATERIA = 2;
         Cursor cursorPlanrjamento;
+        public PlanejamentoAdapter adapter;
 
         //ArrayList<Planejamentos> planejamentos = new ArrayList<>();
 
@@ -57,7 +58,7 @@
 
             cursorPlanrjamento = db.query(PlanejamentosContract.Planejamentos.TABLE_NAME, camposPlanejamento, null, null, null, null, null);
 
-            final PlanejamentoAdapter adapter = new PlanejamentoAdapter(cursorPlanrjamento);
+            adapter = new PlanejamentoAdapter(cursorPlanrjamento);
             RecyclerView rv = findViewById(R.id.rvPlanejamentos);
             rv.setAdapter(adapter);
             rv.setLayoutManager(new LinearLayoutManager(this));
@@ -85,5 +86,10 @@
                     startActivityForResult(intent, PlanejamentosActivity.REQUEST_MATERIA);
                 }
             });
+        }
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            if (data != null) {
+            }
         }
     }
