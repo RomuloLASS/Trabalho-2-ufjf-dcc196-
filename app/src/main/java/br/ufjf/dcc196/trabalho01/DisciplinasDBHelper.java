@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DisciplinasDBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "Disciplinas.db";
 
     DisciplinasDBHelper (Context context){
@@ -13,12 +13,12 @@ public class DisciplinasDBHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(PlanejamentosContract.Planejamentos.CREATE_TABLE);
+        db.execSQL(DisciplinasContract.Disciplinas.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(PlanejamentosContract.Planejamentos.DROP_TABLE);
+        db.execSQL(DisciplinasContract.Disciplinas.DROP_TABLE);
         onCreate(db);
     }
 }

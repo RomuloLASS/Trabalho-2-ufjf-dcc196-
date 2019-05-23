@@ -23,9 +23,8 @@
         public static final int REQUEST_PLANEJAMENTO = 1;
         public static final int REQUEST_MATERIA = 2;
         Cursor cursorPlanrjamento;
-        Cursor cursorDisciplina;
         public PlanejamentoAdapter planejamentoAdapter;
-        public DisciplinasAdapter disciplinasAdapter;
+
 
         RecyclerView rv;
 
@@ -40,6 +39,14 @@
             PlanejamentosDBHelper helper = new PlanejamentosDBHelper(getApplicationContext());
             SQLiteDatabase db = helper.getWritableDatabase();
 
+            ContentValues values = new ContentValues();
+            values.put(DisciplinasContract.Disciplinas.COLLUMN_ANO, "2016");
+            values.put(DisciplinasContract.Disciplinas.COLLUMN_SEMESTRE, "2");
+            values.put(DisciplinasContract.Disciplinas.COLLUMN_NOME, "Matematica");
+            values.put(DisciplinasContract.Disciplinas.COLLUMN_AREA, "Exatas");
+            values.put(DisciplinasContract.Disciplinas.COLLUMN_HORA, "10");
+            db.insert(DisciplinasContract.Disciplinas.TABLE_NAME, null, values);
+
             String[] camposPlanejamento = {
                     PlanejamentosContract.Planejamentos._ID,
                     PlanejamentosContract.Planejamentos.COLLUMN_ANO,
@@ -51,17 +58,8 @@
                     PlanejamentosContract.Planejamentos.COLLUMN_SAUDE,
             };
 
-            String[] camposDisciplinas = {
-                    DisciplinasContract.Disciplinas._ID,
-                    DisciplinasContract.Disciplinas.COLLUMN_NOME,
-                    DisciplinasContract.Disciplinas.COLLUMN_AREA,
-                    DisciplinasContract.Disciplinas.COLLUMN_HORA,
-                    DisciplinasContract.Disciplinas.COLLUMN_ANO,
-                    DisciplinasContract.Disciplinas.COLLUMN_SEMESTRE,
-            };
-
             cursorPlanrjamento = db.query(PlanejamentosContract.Planejamentos.TABLE_NAME, camposPlanejamento, null, null, null, null, null);
-            cursorDisciplina = db.query(DisciplinasContract.Disciplinas.TABLE_NAME, camposDisciplinas, null, null, null, null, null);
+
 
             planejamentoAdapter = new PlanejamentoAdapter(cursorPlanrjamento);
             RecyclerView rv = findViewById(R.id.rvPlanejamentos);

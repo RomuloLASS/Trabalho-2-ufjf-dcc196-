@@ -35,9 +35,9 @@ public class DisciplinasAdapter extends RecyclerView.Adapter<DisciplinasAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull DisciplinaViewHolder holder, int position) {
-        int idNome = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_ANO);
-        int idArea = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_SEMESTRE);
-        int idHora = cursor.getColumnIndex(PlanejamentosContract.Planejamentos.COLLUMN_HORAS);
+        int idNome = cursor.getColumnIndex(DisciplinasContract.Disciplinas.COLLUMN_NOME);
+        int idArea = cursor.getColumnIndex(DisciplinasContract.Disciplinas.COLLUMN_AREA);
+        int idHora = cursor.getColumnIndex(DisciplinasContract.Disciplinas.COLLUMN_HORA);
 
         cursor.moveToPosition(position);
         holder.txtNome.setText(cursor.getString(idNome));
@@ -58,9 +58,9 @@ public class DisciplinasAdapter extends RecyclerView.Adapter<DisciplinasAdapter.
 
         public DisciplinaViewHolder(final View itemView) {
             super(itemView);
-            txtNome = itemView.findViewById(R.id.txtAno);
-            txtArea = itemView.findViewById(R.id.txtSemestre);
-            txtHora = itemView.findViewById(R.id.txtTotalHoras);
+            txtNome = itemView.findViewById(R.id.txtDisciplina);
+            txtArea = itemView.findViewById(R.id.txtArea);
+            txtHora = itemView.findViewById(R.id.txtHora);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

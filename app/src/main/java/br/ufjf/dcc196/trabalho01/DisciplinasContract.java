@@ -6,7 +6,7 @@ public class DisciplinasContract {
 
     public static class Disciplinas implements BaseColumns {
         //Colunas da tabela
-        public static final String TABLE_NAME = "disciplinas";
+        public static final String TABLE_NAME = "disciplina";
         public static final String COLLUMN_ANO = "ano";
         public static final String COLLUMN_SEMESTRE = "semestre";
         public static final String COLLUMN_NOME = "nome";
