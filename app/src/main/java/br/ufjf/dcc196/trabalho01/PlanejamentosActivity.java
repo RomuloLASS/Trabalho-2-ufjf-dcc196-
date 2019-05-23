@@ -23,16 +23,11 @@
         public static final int REQUEST_PLANEJAMENTO = 1;
         public static final int REQUEST_MATERIA = 2;
         Cursor cursorPlanrjamento;
-        public PlanejamentoAdapter adapter;
-
-        //ArrayList<Planejamentos> planejamentos = new ArrayList<>();
+        Cursor cursorDisciplina;
+        public PlanejamentoAdapter planejamentoAdapter;
+        //public DisciplinasAdapter disciplinasAdapter;
 
         RecyclerView rv;
-        //PlanejamentosAdapter pAdapter;
-
-        private void rvAtt (){
-
-        }
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +51,26 @@
                     PlanejamentosContract.Planejamentos.COLLUMN_SAUDE,
             };
 
-            cursorPlanrjamento = db.query(PlanejamentosContract.Planejamentos.TABLE_NAME, camposPlanejamento, null, null, null, null, null);
+            String[] camposDisciplinas = {
+                    DisciplinasContract.Disciplinas._ID,
+                    DisciplinasContract.Disciplinas.COLLUMN_NOME,
+                    DisciplinasContract.Disciplinas.COLLUMN_AREA,
+                    DisciplinasContract.Disciplinas.COLLUMN_HORA,
+                    DisciplinasContract.Disciplinas.COLLUMN_ANO,
+                    DisciplinasContract.Disciplinas.COLLUMN_SEMESTRE,
+            };
 
-            adapter = new PlanejamentoAdapter(cursorPlanrjamento);
+            cursorPlanrjamento = db.query(PlanejamentosContract.Planejamentos.TABLE_NAME, camposPlanejamento, null, null, null, null, null);
+            cursorDisciplina = db.query(DisciplinasContract.Disciplinas.TABLE_NAME, camposDisciplinas, null, null, null, null, null);
+
+            planejamentoAdapter = new PlanejamentoAdapter(cursorPlanrjamento);
             RecyclerView rv = findViewById(R.id.rvPlanejamentos);
-            rv.setAdapter(adapter);
+            rv.setAdapter(planejamentoAdapter);
             rv.setLayoutManager(new LinearLayoutManager(this));
 
-            adapter.setOnPlanejamentoClickListener(new PlanejamentoAdapter.OnPlanejamentoClickListener() {
+
+
+            planejamentoAdapter.setOnPlanejamentoClickListener(new PlanejamentoAdapter.OnPlanejamentoClickListener() {
                 @Override
                 public void onPlanejamentoClick(View livroView, int position) {
                     Intent intent = new Intent(PlanejamentosActivity.this, DisciplinasCursadasActivity.class);
