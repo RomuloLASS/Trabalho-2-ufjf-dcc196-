@@ -1,7 +1,9 @@
 package br.ufjf.dcc196.trabalho01;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,30 +29,24 @@ public class NovaDisciplinaCursadaActivity extends AppCompatActivity {
         btnCadastra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DisciplinasDBHelper helper = new DisciplinasDBHelper(getApplicationContext());
+                SQLiteDatabase db = helper.getWritableDatabase();
+
                 EditText etNome = findViewById(R.id.etNomeMateria);
                 EditText etTotalHoras = findViewById(R.id.etTotalHoras);
                 EditText etArea = findViewById(R.id.etArea);
                 EditText etAno = findViewById(R.id.etAno);
                 EditText etSemestre = findViewById(R.id.etSemestre);
 
-                /*
-                Disciplinas disc = new Disciplinas();
+                ContentValues values =  new ContentValues();
+                values.put(DisciplinasContract.Disciplinas.COLLUMN_NOME, String.valueOf(etNome.getText()));
+                values.put(DisciplinasContract.Disciplinas.COLLUMN_AREA, String.valueOf(etArea.getText()));
+                values.put(DisciplinasContract.Disciplinas.COLLUMN_HORA, String.valueOf(etTotalHoras.getText()));
+                values.put(DisciplinasContract.Disciplinas.COLLUMN_ANO, String.valueOf(etAno.getText()));
+                values.put(DisciplinasContract.Disciplinas.COLLUMN_SEMESTRE, String.valueOf(etSemestre.getText()));
 
-                disc.setNome((etNome.getText().toString()));
-                disc.setThoras(Float.parseFloat((etTotalHoras.getText().toString())));
-                disc.setArea((etArea.getText().toString()));
+                db.insert(DisciplinasContract.Disciplinas.TABLE_NAME, null, values);
 
-                //Dados para verificar o ano e semestre da materia
-                int ano = Integer.valueOf(etAno.getText().toString());
-                int semestre = Integer.valueOf(etSemestre.getText().toString());
-
-                Intent intent = new Intent();
-                intent.putExtra("nome", disc.getNome());
-                intent.putExtra("tHora", disc.getThoras());
-                intent.putExtra("area", disc.getArea());
-                intent.putExtra("ano", ano);
-                intent.putExtra("semestre", semestre);
-                setResult(Activity.RESULT_OK, intent);*/
                 finish();
             }
         });

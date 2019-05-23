@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 public class DisciplinasCursadasActivity extends AppCompatActivity {
     public DisciplinasAdapter disciplinasAdapter;
@@ -37,26 +39,5 @@ public class DisciplinasCursadasActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rvDisciplina);
         rv.setAdapter(disciplinasAdapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
-
-
-        /*Bundle bundleExtras = getIntent().getExtras();
-        if(bundleExtras!=null){
-            bundleExtras.getString("disciplinas");
-            //ArrayList<Disciplinas> dados = (ArrayList<Disciplinas>) getIntent().getSerializableExtra("dados");
-            //materias = dados;
-        }*/
-
-
-
-
-
-
-
-        //dAdapter = new DisciplinasAdapter(this.materias);
     }
 }

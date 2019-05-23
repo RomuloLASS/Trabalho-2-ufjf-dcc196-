@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class DisciplinasAdapter extends RecyclerView.Adapter<DisciplinasAdapter.DisciplinaViewHolder> {
     private Cursor cursor;
-    public PlanejamentoAdapter.OnPlanejamentoClickListener listener;
+    public DisciplinasAdapter.OnDisciplinaClickListener listener;
 
 
     public DisciplinasAdapter(Cursor c){
@@ -67,7 +67,7 @@ public class DisciplinasAdapter extends RecyclerView.Adapter<DisciplinasAdapter.
                     if(listener != null){
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
-                            listener.onPlanejamentoClick(itemView, position);
+                            listener.onDisciplinaClick(itemView, position);
                         }
                     }
                 }
@@ -76,10 +76,10 @@ public class DisciplinasAdapter extends RecyclerView.Adapter<DisciplinasAdapter.
     }
 
     public interface OnDisciplinaClickListener {
-        void onDisciplinaClick(View livroView, int position);
+        void onDisciplinaClick(View disciplinaView, int position);
     }
 
-    public void setOnDisciplinaClickListener(PlanejamentoAdapter.OnPlanejamentoClickListener listener){
+    public void setOnDisciplinaClickListener(DisciplinasAdapter.OnDisciplinaClickListener listener){
         this.listener = listener;
     }
 }
