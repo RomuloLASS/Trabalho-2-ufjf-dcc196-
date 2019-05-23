@@ -5,15 +5,7 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/txtMateria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="@string/textview"
-        android:textAlignment="center" />
-
-    <TextView
-        android:id="@+id/txtTHoras"
+        android:id="@+id/txtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
@@ -22,6 +14,14 @@
 
     <TextView
         android:id="@+id/txtArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="@string/textview"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/txtHora"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"

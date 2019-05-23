@@ -25,7 +25,7 @@
         Cursor cursorPlanrjamento;
         Cursor cursorDisciplina;
         public PlanejamentoAdapter planejamentoAdapter;
-        //public DisciplinasAdapter disciplinasAdapter;
+        public DisciplinasAdapter disciplinasAdapter;
 
         RecyclerView rv;
 
@@ -67,8 +67,6 @@
             RecyclerView rv = findViewById(R.id.rvPlanejamentos);
             rv.setAdapter(planejamentoAdapter);
             rv.setLayoutManager(new LinearLayoutManager(this));
-
-
 
             planejamentoAdapter.setOnPlanejamentoClickListener(new PlanejamentoAdapter.OnPlanejamentoClickListener() {
                 @Override
